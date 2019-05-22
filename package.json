@@ -127,5 +127,9 @@
     "presets": [
       "react-app"
     ]
+  },
+  "devDependencies": {
+    "@wildpeaks/three-webpack-plugin": "^2.0.0",
+    "three": "^0.104.0"
   }
 }

@@ -79,11 +79,13 @@ class LMThree {
     this.initLight()
     this.initControl()
     this.initObjects()
+    
+    this.scene.add(this.camera)
     // 开发工具使用
     window.camera = this.camera
     window.scene = this.scene
 
-    window.addEventListener('resize', this.onWindowResize, false);
+    window.addEventListener('resize', this.onWindowResize, false)
   }
 
   onWindowResize() {
@@ -97,15 +99,21 @@ class LMThree {
     }
   }
 
-  load({path='./static/models/', name='model.json'}={}) {
-    debugger
-    this.loader = new THREE.ObjectLoader()
-    this.loader.setPath(path);
-    this.loader.load(name, (json)=>{
-      this.scene.add(json);
+  load(name) {
+    let that = this
+    let loader = new THREE.ObjectLoader()
+    // loader.setPath(path);
+    loader.load(name, (json)=>{
+      console.error(json)
+      that.scene.add(json);
     }, undefined, (e)=>{
       console.error( e );
     } );
+  }
+
+  run() {
+    that.rendering()
+    requestAnimationFrame(that.run)
   }
 }
 

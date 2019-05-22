@@ -1,5 +1,5 @@
-import LMThree from '../../3d/THREEJS/LMThree'
-
+import LMThree from 'src/3d/THREEJS/LMThree'
+let THREE = window.THREE
 export default class JSONTest extends LMThree{
   constructor() {
     super()
@@ -12,9 +12,21 @@ export default class JSONTest extends LMThree{
     }
     this.init(options)
 
-    this.load({
-      path: './',
-      name: 'cat.json'
-    })
+    this.load('./cat.json')
+    this.run()
+  }
+
+  initCamera() {
+    super.initCamera()
+    this.camera.position.set(0, 25, -250)
+    this.camera.rotation.set(-3, 0,  -179.08)
+  }
+
+  initLight() {
+    let hemisphereLight = new THREE.HemisphereLight(0xffffff,0xffffff, 2.5)
+    hemisphereLight.name = 'hemisphereLight'
+    hemisphereLight.position.set(0, 0, 0);
+    this.scene.add(hemisphereLight)
+    this.render.setClearColor('#6ecccc', 1)
   }
 }
